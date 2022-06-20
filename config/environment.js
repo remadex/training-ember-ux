@@ -6,6 +6,7 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'history',
+    apiPath: 'http://localhost:8080',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -44,6 +45,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    ENV.apiPath = 'https://api.technocite.be';
     // here you can enable a production-specific feature
   }
 
