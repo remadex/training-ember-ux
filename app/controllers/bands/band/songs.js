@@ -47,4 +47,10 @@ export default class BandsBandSongsController extends Controller {
     };
     this.isAddingSong = false;
   }
+
+  @action
+  setMaxRating(song) {
+    song.set('rating', 10);
+    song.save();
+  }
 }
