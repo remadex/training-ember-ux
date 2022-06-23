@@ -1,7 +1,7 @@
 {{@textBeforeStars}}
 {{! Le @ permet de récupérer le contenu d'un args, le this permet de récupérer une propriété dans le fichier js correspondant au template }}
 {{#each this.stars as |star|}}
-  <button {{on 'click' (fn this.setRating star.rating)}}>
+  <button type="button" {{on 'click' (fn this.setRating star.rating)}}>
     {{! (fn this.action paramètre1 paramètre2 ...) }}
     {{#if star.isFull}}
       <svg

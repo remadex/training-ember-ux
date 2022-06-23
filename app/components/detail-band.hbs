@@ -1,0 +1,20 @@
+{{#if this.isEditing}}
+  <div class='flex flex-col'>
+    {{! template-lint-disable require-input-label }}
+    <Textarea class='text-black rounded p-4' @value={{@description}} />
+    <button
+      type='button'
+      class='btnPrimary self-end mt-4'
+      {{on 'click' this.saveBand}}
+    >Sauvegarder</button>
+  </div>
+{{else}}
+  <div class='flex flex-col'>
+    <p>{{@description}}</p>
+    <button
+      type='button'
+      class='btnPrimary self-end mt-4'
+      {{on 'click' this.toggleEdit}}
+    >Editer</button>
+  </div>
+{{/if}}
