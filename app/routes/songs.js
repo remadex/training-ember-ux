@@ -8,13 +8,17 @@ export default class SongsRoute extends Route {
     name: {
       refreshModel: true,
     },
+    rating: {
+      refreshModel: true,
+    },
   };
 
   model(params) {
     const songs = this.store.findAll('song', { include: 'band' });
     return {
       songs,
-      query: params.name,
+      queryName: params.name,
+      queryRating: params.rating,
     };
   }
 }

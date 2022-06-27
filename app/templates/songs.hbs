@@ -3,7 +3,7 @@
   <div class='ml-24 mb-2 flex justify-between'>
     <LinkTo
       @route='songs'
-      @query={{hash name=this.direction}}
+      @query={{hash name=this.directionName rating=null}}
       class='text-sm text-indigo-400 flex items-center'
     >
       Nom de la musique
@@ -11,7 +11,24 @@
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 20 20'
         class='ml-1 w-3 fill-current text-white
-          {{if (eq this.direction "desc") "transform rotate-180"}}'
+          {{if (eq this.directionName "desc") "transform rotate-180"}}'
+      >
+        <path
+          d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'
+        ></path>
+      </svg>
+    </LinkTo>
+    <LinkTo
+      @route='songs'
+      @query={{hash name=null rating=this.directionRating}}
+      class='text-sm text-indigo-400 flex items-center'
+    >
+      Note de la musique
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 20 20'
+        class='ml-1 w-3 fill-current text-white
+          {{if (eq this.directionRating "desc") "transform rotate-180"}}'
       >
         <path
           d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'
