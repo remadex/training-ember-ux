@@ -4,7 +4,17 @@ import { inject as service } from '@ember/service';
 export default class SongsRoute extends Route {
   @service store;
 
-  model() {
-    return this.store.findAll('song', { include: 'band' });
+  queryParams = {
+    name: {
+      refreshModel: true,
+    },
+  };
+
+  model(params) {
+    const songs = this.store.findAll('song', { include: 'band' });
+    return {
+      songs,
+      query: params.name,
+    };
   }
 }

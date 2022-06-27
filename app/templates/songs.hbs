@@ -1,21 +1,70 @@
-{{page-title "Songs"}}
-<div class="w-128">
-  {{#each this.model as |song|}}
-    <div class="flex justify-between mb-2">
-      <div class="flex items-center">
-        <button type="button" class="mr-4" {{on "click" (fn this.addFavorite song)}}>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white {{if (includes this.favoritesSong.items song) "text-red-500"}}" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+{{page-title 'Songs'}}
+<div class='w-128'>
+  <div class='ml-24 mb-2 flex justify-between'>
+    <LinkTo
+      @route='songs'
+      @query={{hash name=this.direction}}
+      class='text-sm text-indigo-400 flex items-center'
+    >
+      Nom de la musique
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 20 20'
+        class='ml-1 w-3 fill-current text-white
+          {{if (eq this.direction "desc") "transform rotate-180"}}'
+      >
+        <path
+          d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'
+        ></path>
+      </svg>
+    </LinkTo>
+  </div>
+  {{#each this.filteredSongs as |song|}}
+    <div class='flex justify-between mb-2'>
+      <div class='flex items-center'>
+        <button
+          type='button'
+          class='mr-4'
+          {{on 'click' (fn this.toggleFavorite song)}}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='h-5 w-5 text-white
+              {{if (includes this.favoritesSong.items song) "text-red-500"}}'
+            viewBox='0 0 20 20'
+            fill='currentColor'
+          >
+            <path
+              fill-rule='evenodd'
+              d='M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z'
+              clip-rule='evenodd'
+            ></path>
           </svg>
         </button>
-        <button type="button" class="mr-8" {{on "click" (fn this.deleteSong song)}}>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <button
+          type='button'
+          class='mr-8'
+          {{on 'click' (fn this.deleteSong song)}}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='h-6 w-6 text-red-500'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            stroke-width='2'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+            ></path>
           </svg>
         </button>
-        {{song.title}} <span class="text-teal-200 text-sm ml-1">by {{song.band.name}}</span>
+        {{song.title}}
+        <span class='text-teal-200 text-sm ml-1'>by {{song.band.name}}</span>
       </div>
-      <div class="flex">
+      <div class='flex'>
         <StarRating @rating={{song.rating}} @song={{song}} />
       </div>
     </div>
